@@ -11,7 +11,7 @@ export default function Home() {
   console.log("hey it is from server side.")   //this is from server side..
   return (
     <div>
-      
+      <SignInButton/>
     </div>
   );
 }
