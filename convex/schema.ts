@@ -6,6 +6,7 @@ export default defineSchema({
         userId: v.string(),
         email:v.string(),
         isPro:v.boolean(),
+        name:v.string(),
         proSince:v.optional(v.number()),
         lemonSqueezyCustomerId:v.optional(v.string()),
         lemonSqueezyOrderId:v.optional(v.string()),

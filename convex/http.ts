@@ -1,7 +1,9 @@
 import { httpRouter } from "convex/server";
 import { httpAction } from "./_generated/server";
-// Import Webhook from @clerk/nextjs/server or the appropriate package
-import { Webhook, WebhookEvent } from "svix"; // Adjust import as needed
+import { Webhook} from "svix"; 
+import { WebhookEvent } from "@clerk/nextjs/server";
+import {api} from "./_generated/api"
+
 
 const http = httpRouter();
 
@@ -45,11 +47,18 @@ http.route({
             const email = email_addresses[0].email_address;
             const name = `${first_name || ""}${last_name || ""}`.trim();
             try{
-
+                //save user to dB
+                await ctx.runMutation(api.users.syncUser,{
+                    userId:id,
+                    email,
+                    name,
+                })
             } catch(error){
+                console.log("Error Creating the User..",error);
                 return new Response("Error creating",{status:500})
             }
         } 
-        return new Response("Webhook received", { status: 200 });
+        return new Response("Webhook processed Succesfully", { status: 200 });
     })
 });
+export default http;

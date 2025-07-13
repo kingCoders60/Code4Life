@@ -1,17 +1,10 @@
-import {
-  ClerkProvider,
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
-export default function Home() {
-  console.log("hey it is from server side.")   //this is from server side..
+import {SignOutButton,SignUpButton} from "@clerk/nextjs"
+export default function Home(){
   return (
     <div>
-      <SignInButton/>
+      <SignUpButton/>
+      <></>
+      <SignOutButton/>
     </div>
   );
 }
